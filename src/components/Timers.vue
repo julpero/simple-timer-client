@@ -1,19 +1,29 @@
 <template>
-    <div>
-        
-    </div>
+  <div>This is Timers block for {{ userName }}</div>
+  <Timer v-for="timer in getTimers()" :key="timer" />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import Timer from "./Timer.vue";
+import TimerDataService from "../services/TimerDataService";
 
 @Options({
+  components: {
+    Timer,
+  },
   props: {
-    user: String,
+    userName: String,
+  },
+  methods: {
+    getTimers(): number[] {
+        TimerDataService.getAll();
+      return [1, 2];
+    },
   },
 })
 export default class Timers extends Vue {
-  user!: string;
+  userName!: string;
 }
 </script>
 
