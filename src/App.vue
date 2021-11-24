@@ -1,18 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <Timers :user=joo />
+  Who are you? <input v-model="joo"> {{joo}}
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import HelloWorld from "./components/HelloWorld.vue";
+import Timers from "./components/Timers.vue";
 
 @Options({
   components: {
-    HelloWorld,
+    Timers
   },
 })
-export default class App extends Vue {}
+
+export default class App extends Vue {
+  joo: string = "";
+}
 </script>
 
 <style>
