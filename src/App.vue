@@ -12,6 +12,9 @@
 import { Options, Vue } from "vue-class-component";
 import Timers from "./components/Timers.vue";
 
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
+
 @Options({
   components: {
     Timers,
@@ -19,6 +22,7 @@ import Timers from "./components/Timers.vue";
   methods: {
     showTimers: function () {
       if (this.userName.length > 3) {
+        window.localStorage.setItem("timerUser", this.userName);
         this.okToShowTimers = true;
       }
     },

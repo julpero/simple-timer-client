@@ -1,32 +1,28 @@
 <template>
-  <div>This is Timers block for {{ userName }}</div>
-  <Timer v-for="timer in getTimers()" :key="timer" />
-  <NewTimer />
+  <button class="btn btn-primary" v-on:click="newTimer()">Create New Timer</button>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import Timer from "./Timer.vue";
-import NewTimer from "./NewTimer.vue";
 import TimerDataService from "../services/TimerDataService";
 
 @Options({
   components: {
-    Timer,
-    NewTimer,
   },
   props: {
     userName: String,
   },
   methods: {
-    getTimers(): number[] {
-        TimerDataService.getAll();
-      return [1, 2];
+    newTimer(): boolean {
+        const newTimerObj = {
+            userName: window.localStorage.getItem("timerUser"),
+        };
+        TimerDataService.create(newTimerObj);
+      return true;
     },
   },
 })
-export default class Timers extends Vue {
-  userName!: string;
+export default class NewTimer extends Vue {
 }
 </script>
 
